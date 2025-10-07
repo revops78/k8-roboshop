@@ -1,55 +1,56 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: catalogue
+  name: user
   namespace: roboshop
 data:
-  MONGO: "true" 
-  MONGO_URL: "mongodb://mongodb:27017/catalogue"
+  MONGO_URL: "mongodb://mongodb:27017/users" 
+  REDIS_URL: "redis://redis:6379" 
+  MONGO: true
 ---
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: catalogue
+  name: user
   namespace: roboshop
   labels:
-    component: catalogue
+    component: user
     project : roboshop
     tier : database
 spec:
   replicas: 1   # Number of pod replicas
   selector:
     matchLabels:
-      component: catalogue
+      component: user
       project : roboshop
       tier : database
   template:
     metadata:
       labels:
-        component: catalogue
+        component: user
         project : roboshop
         tier : database
     spec:
       containers:
-        - name: catalogue
-          image: revops78/catalogue:v1
+        - name: user
+          image: revops78/user:v1
           envFrom:
             - configMapRef:
-                name: catalogue
+                name: user
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: catalogue
+  name: user
   namespace: roboshop
   labels:
-    component: catalogue
+    component: user
     project : roboshop
     tier : app
 spec:
   selector:
-    component: catalogue
+    component: user
     project : roboshop
     tier : database  
   ports:
