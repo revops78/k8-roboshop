@@ -24,7 +24,26 @@ spec:
       containers:
         - name: mongodb
           image: revops78/mongodb:v1  # Replace with your image
-
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb
+  namespace: roboshop
+  labels:
+    component: mongodb
+    project : roboshop
+    tier : database
+spec:
+  selector:
+  labels:
+    component: mongodb
+    project : roboshop
+    tier : database  
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
           
 
 
