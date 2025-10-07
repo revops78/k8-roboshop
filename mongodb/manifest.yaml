@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb
+  Namespace: roboshop
+  labels:
+    component: mongodb
+    project : roboshop
+    tier : database
+spec:
+  replicas: 1   # Number of pod replicas
+  selector:
+    matchLabels:
+      component: mongodb
+      project : roboshop
+      tier : database
+  template:
+    metadata:
+      labels:
+        component: mongodb
+        project : roboshop
+        tier : database
+    spec:
+      containers:
+        - name: mongodb
+          image: revops78/mongodb  # Replace with your image
+
+          
+
+
