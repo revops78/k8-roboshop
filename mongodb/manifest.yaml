@@ -36,7 +36,6 @@ metadata:
     tier : database
 spec:
   selector:
-  labels:
     component: mongodb
     project : roboshop
     tier : database  
