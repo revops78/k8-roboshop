@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  namespace: roboshop
+  labels:
+    component: mysql
+    project : roboshop
+    tier : database
+spec:
+  replicas: 1   # Number of pod replicas
+  selector:
+    matchLabels:
+      component: mysql
+      project : roboshop
+      tier : database
+  template:
+    metadata:
+      labels:
+        component: mysql
+        project : roboshop
+        tier : database
+    spec:
+      containers:
+        - name: mysql
+          image: revops78/mysql:v1  # Replace with your image
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  namespace: roboshop
+  labels:
+    component: mysql
+    project : roboshop
+    tier : database
+spec:
+  selector:
+    component: mysql
+    project : roboshop
+    tier : database  
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+
+
+      #pending
+          
+
+
