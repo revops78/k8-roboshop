@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: mongodb
-          image: revops78/mongodb  # Replace with your image
+          image: revops78/mongodb:v1  # Replace with your image
 
           
 
