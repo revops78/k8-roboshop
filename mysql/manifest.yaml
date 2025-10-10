@@ -41,7 +41,7 @@ spec:
           image: revops78/mysql:v1  # Replace with your image
           envFrom:
           - secretRef:
-            name: mysql
+              name: mysql
 ---
 apiVersion: v1
 kind: Service
