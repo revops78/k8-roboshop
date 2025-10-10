@@ -1,3 +1,18 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql
+  labels:
+    component: mysql
+    project : roboshop
+    tier : database
+type: Opaque
+data:
+  MYSQL_ROOT_PASSWORD: "Um9ib3Nob3BAMQ=="
+
+
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,6 +39,9 @@ spec:
       containers:
         - name: mysql
           image: revops78/mysql:v1  # Replace with your image
+          envFrom:
+          - secretRef:
+            name: mysql
 ---
 apiVersion: v1
 kind: Service
@@ -41,8 +59,8 @@ spec:
     tier : database  
   ports:
     - protocol: TCP
-      port: 27017
-      targetPort: 27017
+      port: 3306
+      targetPort: 3306
 
 
       #pending
