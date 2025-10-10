@@ -16,20 +16,20 @@ metadata:
   labels:
     component: catalogue
     project : roboshop
-    tier : database
+    tier : app
 spec:
   replicas: 1   # Number of pod replicas
   selector:
     matchLabels:
       component: catalogue
       project : roboshop
-      tier : database
+      tier : app
   template:
     metadata:
       labels:
         component: catalogue
         project : roboshop
-        tier : database
+        tier : app
     spec:
       containers:
         - name: catalogue
@@ -51,7 +51,7 @@ spec:
   selector:
     component: catalogue
     project : roboshop
-    tier : database  
+    tier : app  
   ports:
     - protocol: TCP
       port: 8080
